@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\TermiiSms;
 
 class Auth extends Controller
 {
@@ -14,6 +15,6 @@ class Auth extends Controller
     }
 
     public function general_auth_otp(Request $request){
-
+        TermiiSms::test();
     }
 }
