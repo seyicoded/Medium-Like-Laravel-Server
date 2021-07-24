@@ -46,10 +46,10 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="posts.html">All Articles</a>
+                            <a href="{{url('/admin/view-articles')}}">All Articles</a>
                         </li>
                         <li>
-                            <a href="new-post.html">Add new Article</a>
+                            <a href="{{url('/admin/create-article')}}">Add new Article</a>
                         </li>
                     </ul>
                 </li>

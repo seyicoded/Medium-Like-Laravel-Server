@@ -30,5 +30,8 @@ Route::group(['namespace'=>'Admin', 'prefix' => 'admin',], function(){
         Route::get('/delete-category', 'Category@delete_category');
         Route::get('/edit-category', 'Category@edit_category');
         Route::post('/edit-category', 'Category@edit_category_now');
+
+        // article section
+        Route::get('/create-article', 'Articles@create_article');
     });
 });
