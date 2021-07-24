@@ -18,6 +18,10 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <link rel="stylesheet" href="{{url('ckec/samples/css/samples.css')}}">
+  <script type="text/javascript" src="{{url('ckec/ckeditor.js')}}"></script>
+    <script type="text/javascript" src="{{url('ckec/samples/js/sample.js')}}"></script>
 </head>
 
 <body>
@@ -62,7 +66,14 @@
 
 <script src="{{asset('js/app.js')}}"></script>
 
+<script>
+    initSample();
 
+    function reprocess(){
+        $("textarea[name='p_content']").html( CKEDITOR.instances['editor'].getData() );
+        return true;
+    }
+</script>
 
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.23/r-2.2.7/sp-1.2.2/datatables.min.js"></script>
 

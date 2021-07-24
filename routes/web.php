@@ -33,5 +33,6 @@ Route::group(['namespace'=>'Admin', 'prefix' => 'admin',], function(){
 
         // article section
         Route::get('/create-article', 'Articles@create_article');
+        Route::post('/create-article', 'Articles@create_article_now');
     });
 });
