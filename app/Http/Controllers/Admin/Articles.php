@@ -72,7 +72,7 @@ class Articles extends Controller
         $sql = "INSERT INTO articles(c_id, a_title, a_desc, a_content, a_image, a_location, a_status, bottom_button_link, bottom_button_text) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if( (DB::insert($sql, [$category_id, $article_title, $article_desc, $p_content, $image_fileName, $article_location, 1, $bb_link, $bb_text])) ){
-            TermiiSms::send_notification_from_article_created( (DB::select('SELECT * from articles where c_id = ? AND a_content = ? AND a_title = ?', [$category_id, $article_title, $article_title]))[0]->a_id );
+            TermiiSms::send_notification_from_article_created( (DB::select('SELECT * from articles where c_id = ? AND a_content = ? AND a_title = ?', [$category_id, $p_content, $article_title]))[0]->a_id );
             return redirect(url('/admin/view-articles'));
         }else{
             return "an error occurred";
