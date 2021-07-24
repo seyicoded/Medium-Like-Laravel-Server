@@ -16,7 +16,7 @@
                 });
             </script>
 
-            <table id="liveChat_list" style="width: 94%; margin: 3%" class="w3-table w3-bordered w3-striped w3-border w3-hoverable" width="94%">
+            <table id="liveChat_list" style="width: 94%; margin: 3%" class="w3-table w3-small w3-bordered w3-striped w3-border w3-hoverable" width="94%">
                 <thead>
                     <tr>
                         <th>SN</th>

@@ -78,4 +78,9 @@ class Articles extends Controller
             return "an error occurred";
         }
     }
+
+    public function view_articles(){
+        $data = DB::select('SELECT * from articles ORDER BY a_id DESC', []);
+        return view('Admin.Article.View')->with('data', ['articles' => $data]);
+    }
 }
