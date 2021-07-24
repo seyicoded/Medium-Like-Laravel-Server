@@ -31,8 +31,8 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="categories.html">Create Category</a>
-                            <a href="categories.html">All categories</a>
+                            <a href="{{url('/admin/create-category')}}">Create Category</a>
+                            <a href="{{url('/admin/view-categories')}}">All categories</a>
                         </li>
                     </ul>
                 </li>

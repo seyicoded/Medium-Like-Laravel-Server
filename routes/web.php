@@ -22,5 +22,13 @@ Route::group(['namespace'=>'Admin', 'prefix' => 'admin',], function(){
     Route::middleware(['admin_auth'])->group(function () {
         Route::get('/', 'Dashboard@Dashboard');
         Route::get('/logout', 'Auth\Processor@logout');
+
+        // category section
+        Route::get('/create-category', 'Category@create_category');
+        Route::post('/create-category', 'Category@create_category_now');
+        Route::get('/view-categories', 'Category@view_categories');
+        Route::get('/delete-category', 'Category@delete_category');
+        Route::get('/edit-category', 'Category@edit_category');
+        Route::post('/edit-category', 'Category@edit_category_now');
     });
 });
