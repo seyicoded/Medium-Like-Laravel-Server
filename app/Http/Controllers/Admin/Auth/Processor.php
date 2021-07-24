@@ -36,4 +36,10 @@ class Processor extends Controller
 
         return redirect(url('/admin'));
     }
+
+    public function logout(){
+        setcookie(sha1('admin_logged_in'), '', time() - (86400 * 765), "/");
+        setcookie(sha1('admin_id'), '', time() - (86400 * 765), "/");
+        return redirect(url('/admin/login'));
+    }
 }

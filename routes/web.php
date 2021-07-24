@@ -21,5 +21,6 @@ Route::post('/admin/login', 'Admin\Auth\Processor@login_processor');
 Route::group(['namespace'=>'Admin', 'prefix' => 'admin',], function(){
     Route::middleware(['admin_auth'])->group(function () {
         Route::get('/', 'Dashboard@Dashboard');
+        Route::get('/logout', 'Auth\Processor@logout');
     });
 });
