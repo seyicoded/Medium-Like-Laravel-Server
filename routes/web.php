@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin/login', 'Admin\Auth\Processor@load_login');
+Route::post('/admin/login', 'Admin\Auth\Processor@login_processor');
+
+Route::group(['namespace'=>'Admin', 'prefix' => 'admin',], function(){
+    Route::middleware(['admin_auth'])->group(function () {
+        Route::get('/', 'Dashboard@Dashboard');
+    });
+});
