@@ -24,9 +24,8 @@ Route::prefix('v1')->middleware(['api_auth_v1'])->group(function () {
         return 'reached hommies';
     });
 
-    Route::post('/universal-login', 'Api\v1\Auth@universal_login');
-
-    Route::post('/general-auth-otp', 'Api\v1\Auth@general_auth_otp');
+    // user_auth
+    Route::post('/auth_user_in', 'Api\v1\Auth@auth_user_in');
 });
 
 Route::any('/', function () {
