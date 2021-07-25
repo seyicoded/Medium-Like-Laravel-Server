@@ -27,6 +27,13 @@ Route::prefix('v1')->middleware(['api_auth_v1'])->group(function () {
     // user_auth
     Route::post('/auth_user_in', 'Api\v1\Auth@auth_user_in');
     Route::post('/get_all_categories', 'Api\v1\Auth@get_all_categories');
+    Route::post('/finalize_regis', 'Api\v1\Auth@finalize_regis');
+
+    // app get data
+    Route::post('/user-information/{id}', 'Api\v1\Auth@user_information');
+
+    // push noti reg
+    Route::post('/reg-push-token', 'Api\v1\Auth@reg_push_token');
 });
 
 Route::any('/', function () {

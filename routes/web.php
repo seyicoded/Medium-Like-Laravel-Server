@@ -37,5 +37,6 @@ Route::group(['namespace'=>'Admin', 'prefix' => 'admin',], function(){
         Route::get('/view-articles', 'Articles@view_articles');
         Route::get('/edit-article', 'Articles@edit_article');
         Route::post('/edit-article', 'Articles@edit_article_now');
+
     });
 });
