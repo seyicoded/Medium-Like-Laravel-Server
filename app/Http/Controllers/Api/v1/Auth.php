@@ -54,6 +54,11 @@ class Auth extends Controller
         }
     }
 
+    public function get_all_categories(Request $request){
+        $rec = DB::select('SELECT * from categories ORDER BY c_id DESC', []);
+        return response()->json(['status'=> true, 'message' => "loaded successfully", 'data'=> $rec], 200);
+    }
+
     public function general_auth_otp(Request $request){
         TermiiSms::test();
     }

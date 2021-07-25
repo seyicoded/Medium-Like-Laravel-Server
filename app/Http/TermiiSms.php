@@ -16,7 +16,7 @@ class TermiiSms {
             "Adamawa",
             "Akwa Ibom",
             "Anambra",
-            "Abuja",
+            "Federal Capital Territory",
             "Bauchi",
             "Bayelsa",
             "Benue",

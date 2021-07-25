@@ -33,7 +33,8 @@
                             <td>{{$dt->category_name}}</td>
                             <td><img class="w3-circle" style="width: 60px; height: 60px" src="{{url('images/category_image/'.$dt->categories_image)}}"></td>
                             <td><button onclick="window.location.href = '{{url('/admin/edit-category?c_id='.$dt->c_id)}}'" class="w3-btn w3-round w3-btn-block w3-green">Edit</button></td>
-                            <td><button onclick="window.location.href = '{{url('/admin/delete-category?c_id='.$dt->c_id)}}'" class="w3-btn w3-round w3-btn-block w3-red">Delete</button></td>
+                            <td><button class="w3-btn w3-round w3-btn-block w3-red w3-disabled">Delete</button></td>
+                            {{-- <td><button onclick="window.location.href = '{{url('/admin/delete-category?c_id='.$dt->c_id)}}'" class="w3-btn w3-round w3-btn-block w3-red">Delete</button></td> --}}
                         </tr>
                     @endforeach
                 </tbody>

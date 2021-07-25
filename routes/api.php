@@ -26,6 +26,7 @@ Route::prefix('v1')->middleware(['api_auth_v1'])->group(function () {
 
     // user_auth
     Route::post('/auth_user_in', 'Api\v1\Auth@auth_user_in');
+    Route::post('/get_all_categories', 'Api\v1\Auth@get_all_categories');
 });
 
 Route::any('/', function () {
