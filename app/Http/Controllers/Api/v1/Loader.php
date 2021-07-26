@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers\Api\v1;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
+class Loader extends Controller
+{
+    //
+    public function get_home_info(Request $request){
+        if($request->user_id == ''){
+            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+        }
+
+        $user_id = $request->user_id;
+
+        // get categories subscribed
+        $cat = DB::select('SELECT * from users where u_id = ?', [$user_id])[0]->categories;
+        $cat_arr = explode(",", $cat);
+
+        $where = '';
+        $num = count($cat_arr);
+        for ($i = 1 ; $i <= $num ; $i++ ) {
+            if( ($i == 1) ){
+                $where = $where."c_id = ".$cat_arr[$i-1]." &&";
+            }else if( $i == $num ){
+                $where = $where."c_id = ".$cat_arr[$i-1];
+            }else{
+                $where = $where."c_id = ".$cat_arr[$i-1]. "&&";
+            }
+        }
+
+        $cat_data = DB::select('SELECT * from categories where '.$where, []);
+        // get all article of categories subscribed
+        $article_data = DB::select('SELECT * from articles where '.$where, []);
+
+        return response()->json(['status'=> true, 'message' => "loaded", 'categories'=> $cat_data, 'articles'=>$article_data], 200);
+    }
+}

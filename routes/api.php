@@ -34,6 +34,9 @@ Route::prefix('v1')->middleware(['api_auth_v1'])->group(function () {
 
     // push noti reg
     Route::post('/reg-push-token', 'Api\v1\Auth@reg_push_token');
+
+    // load user home
+    Route::post('/get-home-info', 'Api\v1\Loader@get_home_info');
 });
 
 Route::any('/', function () {
