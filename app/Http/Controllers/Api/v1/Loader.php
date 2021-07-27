@@ -24,11 +24,11 @@ class Loader extends Controller
         $num = count($cat_arr);
         for ($i = 1 ; $i <= $num ; $i++ ) {
             if( ($i == 1) ){
-                $where = $where."c_id = ".$cat_arr[$i-1]." &&";
+                $where = $where."c_id = ".$cat_arr[$i-1]." ||";
             }else if( $i == $num ){
                 $where = $where."c_id = ".$cat_arr[$i-1];
             }else{
-                $where = $where."c_id = ".$cat_arr[$i-1]. "&&";
+                $where = $where."c_id = ".$cat_arr[$i-1]. "||";
             }
         }
 

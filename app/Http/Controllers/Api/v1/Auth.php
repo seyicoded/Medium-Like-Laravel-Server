@@ -91,21 +91,20 @@ class Auth extends Controller
         $rec = DB::select("SELECT * from users where u_id = ? ", [$id]);
 
         // for articles data
-        $user_id = $id;
 
         // get categories subscribed
-        $cat = DB::select('SELECT * from users where u_id = ?', [$user_id])[0]->categories;
+        $cat = $rec[0]->categories;
         $cat_arr = explode(",", $cat);
 
         $where = '';
         $num = count($cat_arr);
         for ($i = 1 ; $i <= $num ; $i++ ) {
             if( ($i == 1) ){
-                $where = $where."c_id = ".$cat_arr[$i-1]." &&";
+                $where = $where."c_id = ".$cat_arr[$i-1]." ||";
             }else if( $i == $num ){
                 $where = $where."c_id = ".$cat_arr[$i-1];
             }else{
-                $where = $where."c_id = ".$cat_arr[$i-1]. "&&";
+                $where = $where."c_id = ".$cat_arr[$i-1]. "||";
             }
         }
 
