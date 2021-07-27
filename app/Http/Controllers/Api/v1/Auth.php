@@ -89,7 +89,31 @@ class Auth extends Controller
 
     public function user_information($id){
         $rec = DB::select("SELECT * from users where u_id = ? ", [$id]);
-        return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec], 200);
+
+        // for articles data
+        $user_id = $id;
+
+        // get categories subscribed
+        $cat = DB::select('SELECT * from users where u_id = ?', [$user_id])[0]->categories;
+        $cat_arr = explode(",", $cat);
+
+        $where = '';
+        $num = count($cat_arr);
+        for ($i = 1 ; $i <= $num ; $i++ ) {
+            if( ($i == 1) ){
+                $where = $where."c_id = ".$cat_arr[$i-1]." &&";
+            }else if( $i == $num ){
+                $where = $where."c_id = ".$cat_arr[$i-1];
+            }else{
+                $where = $where."c_id = ".$cat_arr[$i-1]. "&&";
+            }
+        }
+
+        $cat_data = DB::select('SELECT * from categories where '.$where, []);
+        // get all article of categories subscribed
+        $article_data = DB::select('SELECT * from articles where '.$where, []);
+
+        return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec, 'categories'=> $cat_data, 'articles'=>$article_data], 200);
     }
 
     public function reg_push_token(Request $request){
