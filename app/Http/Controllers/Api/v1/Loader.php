@@ -72,4 +72,20 @@ class Loader extends Controller
 
         return response()->json(['status'=> true, 'message' => "loaded", 'articles'=>$article_data], 200);
     }
+
+    public function get_home_info_search(Request $request){
+        if($request->user_id == ''){
+            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+        }
+        if($request->search == ''){
+            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+        }
+
+        $user_id = $request->user_id;
+        $search = $request->search;
+
+        $article_data = DB::select('SELECT * from articles where a_title LIKE ? OR a_desc LIKE ? OR a_content LIKE ? ORDER BY a_id DESC', ["%$search%", "%$search%", "%$search%"]);
+
+        return response()->json(['status'=> true, 'message' => "loaded", 'articles'=>$article_data], 200);
+    }
 }
