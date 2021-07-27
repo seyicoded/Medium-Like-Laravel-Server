@@ -38,7 +38,7 @@
                             <td>{{$dt->a_id}}</td>
                             <td>{{ (DB::select("SELECT * FROM categories WHERE c_id = ?", [$dt->c_id])[0])->category_name}}</td>
                             <td>{{$dt->a_title}}</td>
-                            <td>{{$dt->a_desc}}</td>
+                            <td>{{substr($dt->a_desc, 0, 30)}}</td>
                             <td><img class="w3-circle" style="width: 60px; height: 60px" src="{{url('images/article_image/'.$dt->a_image)}}"></td>
                             <td>{{$dt->a_location}}</td>
                             <td><a href="{{$dt->bottom_button_link}}">{{$dt->bottom_button_text}}</a></td>
