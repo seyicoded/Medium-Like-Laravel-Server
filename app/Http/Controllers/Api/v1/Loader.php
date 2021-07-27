@@ -34,7 +34,7 @@ class Loader extends Controller
 
         $cat_data = DB::select('SELECT * from categories where '.$where, []);
         // get all article of categories subscribed
-        $article_data = DB::select('SELECT * from articles where '.$where, []);
+        $article_data = DB::select('SELECT * from articles where '.$where." ORDER BY a_id DESC", []);
 
         return response()->json(['status'=> true, 'message' => "loaded", 'categories'=> $cat_data, 'articles'=>$article_data], 200);
     }
@@ -68,7 +68,7 @@ class Loader extends Controller
 
         // $cat_data = DB::select('SELECT * from categories where '.$where, []);
         // get all article of categories subscribed
-        $article_data = DB::select('SELECT * from articles where c_id = ?', [$c_id]);
+        $article_data = DB::select('SELECT * from articles where c_id = ? ORDER BY a_id DESC', [$c_id]);
 
         return response()->json(['status'=> true, 'message' => "loaded", 'articles'=>$article_data], 200);
     }

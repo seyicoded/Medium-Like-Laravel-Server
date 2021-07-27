@@ -110,7 +110,7 @@ class Auth extends Controller
 
         $cat_data = DB::select('SELECT * from categories where '.$where, []);
         // get all article of categories subscribed
-        $article_data = DB::select('SELECT * from articles where '.$where, []);
+        $article_data = DB::select('SELECT * from articles where '.$where." ORDER BY a_id DESC", []);
 
         return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec, 'categories'=> $cat_data, 'articles'=>$article_data], 200);
     }
