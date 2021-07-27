@@ -37,6 +37,7 @@ Route::prefix('v1')->middleware(['api_auth_v1'])->group(function () {
 
     // load user home
     Route::post('/get-home-info', 'Api\v1\Loader@get_home_info');
+    Route::post('/get-home-info-single', 'Api\v1\Loader@get_home_info_single');
 });
 
 Route::any('/', function () {
