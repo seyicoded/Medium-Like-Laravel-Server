@@ -112,7 +112,9 @@ class Auth extends Controller
         // get all article of categories subscribed
         $article_data = DB::select('SELECT * from articles where '.$where." ORDER BY a_id DESC", []);
 
-        return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec, 'categories'=> $cat_data, 'articles'=>$article_data], 200);
+        $all_cat_data = DB::select('SELECT * from categories', []);
+
+        return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec, 'categories'=> $cat_data, 'articles'=>$article_data, 'all_cat' => $all_cat_data], 200);
     }
 
     public function reg_push_token(Request $request){
