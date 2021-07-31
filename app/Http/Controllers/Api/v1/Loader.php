@@ -93,7 +93,7 @@ class Loader extends Controller
         if($request->user_id == ''){
             return response()->json(['status'=> false, 'message' => "restart app 1"], 200);
         }
-        if($request->hasCat_already == ''){
+        if($request->hascat_already == ''){
             return response()->json(['status'=> false, 'message' => "restart app 2"], 200);
         }
         if($request->c_id == ''){
@@ -101,12 +101,12 @@ class Loader extends Controller
         }
 
         $user_id = $request->user_id;
-        $hasCat_already = $request->hasCat_already;
+        $hascat_already = $request->hascat_already;
         $c_id = $request->c_id;
 
         $present_cat = (DB::select('SELECT * from users where u_id = ?', [$user_id]))[0]->categories;
 
-        if($hasCat_already == 1){
+        if($hascat_already == 1){
             // code to un-subscribe
             // we need to loop it and un-link d un-subscribed one
 
