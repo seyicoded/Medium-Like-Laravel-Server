@@ -91,13 +91,13 @@ class Loader extends Controller
 
     public function sub_toggler(Request $request){
         if($request->user_id == ''){
-            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+            return response()->json(['status'=> false, 'message' => "restart app 1"], 200);
         }
         if($request->hasCat_already == ''){
-            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+            return response()->json(['status'=> false, 'message' => "restart app 2"], 200);
         }
         if($request->c_id == ''){
-            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+            return response()->json(['status'=> false, 'message' => "restart app 3"], 200);
         }
 
         $user_id = $request->user_id;
