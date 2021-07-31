@@ -88,4 +88,65 @@ class Loader extends Controller
 
         return response()->json(['status'=> true, 'message' => "loaded", 'articles'=>$article_data], 200);
     }
+
+    public function sub_toggler(Request $request){
+        if($request->user_id == ''){
+            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+        }
+        if($request->hasCat_already == ''){
+            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+        }
+        if($request->c_id == ''){
+            return response()->json(['status'=> false, 'message' => "restart app"], 200);
+        }
+
+        $user_id = $request->user_id;
+        $hasCat_already = $request->hasCat_already;
+        $c_id = $request->c_id;
+
+        $present_cat = (DB::select('SELECT * from users where u_id = ?', [$user_id]))[0]->categories;
+
+        if($hasCat_already){
+            // code to un-subscribe
+            // we need to loop it and un-link d un-subscribed one
+
+            $cat_arr = explode(",", $present_cat);
+
+            $new_cat = '';
+            $num = count($cat_arr);
+            for ($i = 1 ; $i <= $num ; $i++ ) {
+                if($cat_arr[$i-1] == $c_id){
+                    continue;
+                }
+
+                if( ($i == 1) ){
+                    $new_cat = $new_cat.$cat_arr[$i-1].",";
+                }else if( $i == $num ){
+                    $new_cat = $new_cat.$cat_arr[$i-1];
+                }else{
+                    $new_cat = $new_cat.$cat_arr[$i-1]. ",";
+                }
+            }
+            // check for excess: ,
+            if(str_ends_with($new_cat, ',')){
+                $str_l = strlen($new_cat);
+                $new_cat = substr($new_cat, 0, intval($str_l) - 1);
+            }
+
+            if( (DB::update('UPDATE users set categories = ? where u_id = ?', [$new_cat, $user_id])) != 0 ){
+                return response()->json(['status'=> true, 'message' => "successfully subscribed"], 200);
+            }else{
+                return response()->json(['status'=> false, 'message' => "an error occurred"], 200);
+            }
+
+        }else{
+            // code to subscribe
+            $new_cat = $present_cat.",$c_id";
+            if( (DB::update('UPDATE users set categories = ? where u_id = ?', [$new_cat, $user_id])) != 0 ){
+                return response()->json(['status'=> true, 'message' => "successfully subscribed"], 200);
+            }else{
+                return response()->json(['status'=> false, 'message' => "an error occurred"], 200);
+            }
+        }
+    }
 }
