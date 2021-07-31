@@ -106,7 +106,7 @@ class Loader extends Controller
 
         $present_cat = (DB::select('SELECT * from users where u_id = ?', [$user_id]))[0]->categories;
 
-        if($hasCat_already){
+        if($hasCat_already == 1){
             // code to un-subscribe
             // we need to loop it and un-link d un-subscribed one
 
