@@ -114,7 +114,7 @@ class Auth extends Controller
 
         $all_cat_data = DB::select('SELECT * from categories', []);
 
-        $banners_data = DB::select('SELECT * from banners', []);
+        $banners_data = DB::select('SELECT * from banners WHERE b_status = 1', []);
 
         return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec, 'categories'=> $cat_data, 'articles'=>$article_data, 'all_cat' => $all_cat_data, 'banners_data' => $banners_data], 200);
     }
