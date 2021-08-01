@@ -38,5 +38,10 @@ Route::group(['namespace'=>'Admin', 'prefix' => 'admin',], function(){
         Route::get('/edit-article', 'Articles@edit_article');
         Route::post('/edit-article', 'Articles@edit_article_now');
 
+        // banner section
+        Route::get('/view-banners', 'Banner@view_banners');
+        Route::post('/view-banners', 'Banner@create_banners');
+        Route::get('/toggle-banners', 'Banner@toggle_banners');
+
     });
 });

@@ -114,7 +114,9 @@ class Auth extends Controller
 
         $all_cat_data = DB::select('SELECT * from categories', []);
 
-        return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec, 'categories'=> $cat_data, 'articles'=>$article_data, 'all_cat' => $all_cat_data], 200);
+        $banners_data = DB::select('SELECT * from banners', []);
+
+        return response()->json(['status'=> true, 'message' => "successfully", 'data'=> $rec, 'categories'=> $cat_data, 'articles'=>$article_data, 'all_cat' => $all_cat_data, 'banners_data' => $banners_data], 200);
     }
 
     public function reg_push_token(Request $request){
