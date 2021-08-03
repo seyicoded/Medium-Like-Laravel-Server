@@ -108,6 +108,10 @@ class Auth extends Controller
             }
         }
 
+        if($num == 0){
+            $where = 'c_id = 0';
+        }
+
         $cat_data = DB::select('SELECT * from categories where '.$where, []);
         // get all article of categories subscribed
         $article_data = DB::select('SELECT * from articles where '.$where." ORDER BY a_id DESC", []);
